@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentFormRequest;
 use App\Models\Student;
-use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -27,8 +26,8 @@ class StudentController extends Controller
      */
     public function store(StudentFormRequest $request)
     {
-        $post = new Student($request->validated());
-        $post->save();
+        $student = new Student($request->validated());
+        $student->save();
 
         return response()->json(__('The Student successfully added'));
     }

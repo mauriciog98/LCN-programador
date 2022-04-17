@@ -20,6 +20,9 @@ class Student extends Model
     ];
 
     protected $casts = [
-        'birthdate' => 'datetime:Y-m-d',
+        'birthdate' => 'date:Y-m-d',
     ];
+    public function setBirthdateAttribute($value) {
+        $this->attributes['birthdate'] = date('Y-m-d', strtotime($value) );
+    }
 }

@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('students', 'StudentController@index');
+Route::get('students', [StudentController::class, 'index']);
 Route::group(['prefix' => 'student'], function () {
-    Route::post('store', 'StudentController@add');
-    Route::get('show/{student}', 'StudentController@edit');
-    Route::post('update/{student}', 'StudentController@update');
-    Route::delete('delete/{student}', 'StudentController@delete');
+    Route::post('store', [StudentController::class, 'store']);
+    Route::get('show/{student}', [StudentController::class, 'show']);
+    Route::post('update/{student}', [StudentController::class, 'update']);
+    Route::delete('delete/{student}', [StudentController::class, 'destroy']);
 });
