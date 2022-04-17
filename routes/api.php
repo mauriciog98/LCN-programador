@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('students', 'StudentController@index');
+Route::group(['prefix' => 'student'], function () {
+    Route::post('store', 'StudentController@add');
+    Route::get('show/{student}', 'StudentController@edit');
+    Route::post('update/{student}', 'StudentController@update');
+    Route::delete('delete/{student}', 'StudentController@delete');
 });
